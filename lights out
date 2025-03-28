@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ты уже не можешь уйти</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            animation: glitch 1s infinite;
+        }
+        .hidden {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px red; }
+            50% { text-shadow: -2px -2px white; }
+            100% { text-shadow: 2px 2px red; }
+        }
+        .glitch-img {
+            width: 100%;
+            filter: blur(5px);
+            transition: filter 1s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ты уже не можешь уйти...</h1>
+    <p class="hidden" id="text1">Ты ведь чувствуешь, что кто-то смотрит?</p>
+    <img src="https://source.unsplash.com/random/800x600/?dark" class="hidden glitch-img" id="img1">
+    <p class="hidden" id="text2">Поздно... он уже рядом.</p>
+
+    <script>
+        document.addEventListener("scroll", function() {
+            let text1 = document.getElementById("text1");
+            let img1 = document.getElementById("img1");
+            let text2 = document.getElementById("text2");
+            
+            if (window.scrollY > 50) {
+                text1.classList.remove("hidden");
+            }
+            if (window.scrollY > 200) {
+                img1.classList.remove("hidden");
+                img1.style.filter = "blur(0px)";
+            }
+            if (window.scrollY > 400) {
+                text2.classList.remove("hidden");
+            }
+        });
+    </script>
+</body>
+</html>
