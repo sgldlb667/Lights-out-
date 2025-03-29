@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страшный сайт</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            color: red;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .glitch {
+            font-size: 50px;
+            font-weight: bold;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px red; }
+            25% { text-shadow: -2px -2px cyan; }
+            50% { text-shadow: 2px -2px lime; }
+            75% { text-shadow: -2px 2px yellow; }
+            100% { text-shadow: 2px 2px red; }
+        }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        .scary-text {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: white;
+            animation: flicker 1.5s infinite;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .scary-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://i.imgur.com/8w6rP79.jpg') no-repeat center center/cover;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-dark-room-with-a-red-light-34772-large.mp4" type="video/mp4">
+    </video>
+    <h1 class="glitch">Ты не один... Они рядом...</h1>
+    <p class="scary-text">Они наблюдают за тобой...</p>
+    <p class="scary-text" style="top: 70%;">Ты не сможешь убежать...</p>
+    <div class="scary-image" id="scaryImage"></div>
+    <script>
+        let audio = new Audio('https://www.myinstants.com/media/sounds/horror-ambience.mp3');
+        setTimeout(() => { audio.play(); }, 3000);
+        
+        document.body.addEventListener('mousemove', () => {
+            document.body.style.background = `rgb(${Math.random()*255}, 0, 0)`;
+        });
+        
+        setTimeout(() => {
+            document.getElementById('scaryImage').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('scaryImage').style.display = 'none';
+            }, 2000);
+        }, Math.random() * 5000 + 3000);
+    </script>
+</body>
+</html>
